@@ -1,1 +1,3 @@
-LOAD DATA LOCAL INFILE 'gyms.dat' INTO TABLE Gyms (name, city, zipcode) FIELDS TERMINATED BY ','
+LOAD DATA LOCAL INFILE 'gyms.dat' INTO TABLE Gyms 
+FIELDS TERMINATED BY ','
+(name, city, zipcode);
