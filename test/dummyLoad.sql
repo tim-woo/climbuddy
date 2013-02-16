@@ -8,20 +8,20 @@ FIELDS TERMINATED BY ','
 
 LOAD DATA LOCAL INFILE 'comments.dat' INTO TABLE Comments 
 FIELDS TERMINATED BY ','
-(climbID, comments, userID);
+(climbID, comments, username);
 
 LOAD DATA LOCAL INFILE 'challengeStrings.dat' INTO TABLE ChallengeStrings 
 FIELDS TERMINATED BY ','
-(climbID, challenge, userID);
+(climbID, challenge, username);
 
 LOAD DATA LOCAL INFILE 'challengeVideos.dat' INTO TABLE ChallengeVideos 
 FIELDS TERMINATED BY ','
-(challengeID, videoURL, userID);
+(challengeID, videoURL, username);
 
 LOAD DATA LOCAL INFILE 'betaVideos.dat' INTO TABLE BetaVideos 
 FIELDS TERMINATED BY ','
-(climbID, videoURL, userID, dateAdded, rating);
+(climbID, videoURL, username, dateAdded, rating);
 
 LOAD DATA LOCAL INFILE 'users.dat' INTO TABLE Users 
 FIELDS TERMINATED BY ','
-(userID, username);
+(username);
