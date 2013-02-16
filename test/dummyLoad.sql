@@ -1,3 +1,6 @@
+LOAD DATA LOCAL INFILE 'users.dat' INTO TABLE Users 
+FIELDS TERMINATED BY ',';
+
 LOAD DATA LOCAL INFILE '../gyms.dat' INTO TABLE Gyms 
 FIELDS TERMINATED BY ','
 (name, city, zipcode);
@@ -22,6 +25,3 @@ LOAD DATA LOCAL INFILE 'betaVideos.dat' INTO TABLE BetaVideos
 FIELDS TERMINATED BY ','
 (climbID, videoURL, username, dateAdded, rating);
 
-LOAD DATA LOCAL INFILE 'users.dat' INTO TABLE Users 
-FIELDS TERMINATED BY ','
-(username);

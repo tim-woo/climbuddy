@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS Comments (
 	comments VARCHAR(5000) NOT NULL,
 	username VARCHAR(50),
 
-	FOREIGN KEY (climbID) references Climbs(climbID),
-	FOREIGN KEY (username) references Users(username)
+	FOREIGN KEY (climbID) references Climbs(climbID)
+	#FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ChallengeStrings (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS ChallengeStrings (
 	username VARCHAR(50),
 
 	FOREIGN KEY (climbID) references Climbs(climbID)
-	FOREIGN KEY (username) references Users(username)
+	#FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ChallengeVideos (
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS ChallengeVideos (
 	username VARCHAR(50),
 
 	FOREIGN KEY (challengeID) references ChallengeStrings(challengeID)
-	FOREIGN KEY (username) references Users(username)
+	#FOREIGN KEY (username) references Users(username)
 
 ) ENGINE=INNODB;
 
@@ -63,5 +63,5 @@ CREATE TABLE IF NOT EXISTS BetaVideos (
 	rating INT,
 
 	FOREIGN KEY (climbID) references Climbs(climbID)
-	FOREIGN KEY (username) references Users(username)
+	#FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
