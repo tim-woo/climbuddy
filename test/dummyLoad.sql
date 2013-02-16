@@ -22,6 +22,6 @@ LOAD DATA LOCAL INFILE 'betaVideos.dat' INTO TABLE BetaVideos
 FIELDS TERMINATED BY ','
 (climbID, videoURL, userID, dateAdded, rating);
 
-LOAD DATA LOCAL INFILE 'user.dat' INTO TABLE BetaVideos 
+LOAD DATA LOCAL INFILE 'users.dat' INTO TABLE Users 
 FIELDS TERMINATED BY ','
 (userID, username);
