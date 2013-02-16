@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS Users (
-	userID INT PRIMARY KEY,
-	username VARCHAR(50)
+	username VARCHAR(50) PRIMARY KEY,
+	name VARCHAR (50),
+	age INT,
+	location VARCHAR (50)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Gyms (
@@ -25,30 +27,30 @@ CREATE TABLE IF NOT EXISTS Comments (
 	commentID INT AUTO_INCREMENT PRIMARY KEY,
 	climbID INT NOT NULL,
 	comments VARCHAR(5000) NOT NULL,
-	userID INT NOT NULL,
+	username VARCHAR(50),
 
 	FOREIGN KEY (climbID) references Climbs(climbID),
-	FOREIGN KEY (userID) references Users(userID)
+	FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ChallengeStrings (
 	challengeID INT AUTO_INCREMENT PRIMARY KEY,
 	climbID INT NOT NULL,
 	challenge VARCHAR(5000) NOT NULL,
-	userID INT NOT NULL,
+	username VARCHAR(50),
 
 	FOREIGN KEY (climbID) references Climbs(climbID)
-	#FOREIGN KEY (userID) references Users(userID)
+	FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ChallengeVideos (
 	videoID INT AUTO_INCREMENT PRIMARY KEY,
 	challengeID INT NOT NULL,
 	videoURL VARCHAR(5000) NOT NULL,
-	userID INT,
+	username VARCHAR(50),
 
 	FOREIGN KEY (challengeID) references ChallengeStrings(challengeID)
-	#FOREIGN KEY (userID) references Users(userID)
+	FOREIGN KEY (username) references Users(username)
 
 ) ENGINE=INNODB;
 
@@ -56,10 +58,10 @@ CREATE TABLE IF NOT EXISTS BetaVideos (
 	betaID INT AUTO_INCREMENT PRIMARY KEY,
 	climbID INT NOT NULL,
 	videoURL VARCHAR(100) NOT NULL,
-	userID INT,
+	username VARCHAR(50),
 	dateAdded TIMESTAMP,
 	rating INT,
 
 	FOREIGN KEY (climbID) references Climbs(climbID)
-	#FOREIGN KEY (userID) references Users(userID)
+	FOREIGN KEY (username) references Users(username)
 ) ENGINE=INNODB;
