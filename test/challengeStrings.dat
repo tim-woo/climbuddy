@@ -1,10 +1,10 @@
-1, "Climb it without bottom holds", 0001
-1, "Don't use the green crimp", 0002
-2, "Do not use the arete", 0003
-2, "Campus to the top", 0004
-2, "Dino to the top", 0004
-3, "Campus to the top", 0004
-4, "Reach the top, then do a dance", 0004
-5, "Do it naked", 0004
-6, "Do it with a 20lb backpack on", 0004
-7, "Do it blindfolded", 0004
+"1","Climb it without bottom holds", "0001"
+"1","Don't use the green crimp", "0002"
+"2","Do not use the arete", "0003"
+"2","Campus to the top", "0004"
+"2","Dino to the top", "0004"
+"3","Campus to the top", "0004"
+"4","Reach the top, then do a dance", "0004"
+"5","Do it naked", "0004"
+"6","Do it with a 20lb backpack on", "0004"
+"7","Do it blindfolded", "0004"
