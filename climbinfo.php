@@ -1,6 +1,7 @@
 <?php
-//this script retrieves the climbs from the requested Gym
-//TESTING:  http://54.235.158.91/getclimbs.php?gym_id=1
+//this script retrieves the requested climb with all of its information
+//specifically from the Climbs table
+//TESTING:  http://54.235.158.91/climbinfo.php?climb_id=1
 
 
 
@@ -22,30 +23,32 @@ else die("Was unable to connect to database!");
 ////////////////////////////////////
 
 
-//$gym = $_REQUEST["gym"];
-$gid = $_REQUEST["gym_id"];
+//$gym = $_REQUEST["climb"];
+$cid = $_REQUEST["climb_id"];
 
 //we want the android to call this script with the specified CLIMB and CLIMB_ID
 
 $output = array(); // JSON response array
-$result = mysql_query("SELECT climbID, name FROM Climbs WHERE gymID = '$gid'") or die(mysql_error());
+$result = mysql_query("SELECT * FROM Climbs WHERE climbID = '$cid'") or die(mysql_error());
 
 if(mysql_num_rows($result) > 0)
 {
 		//loop through results....
-		$output["climbs"] = array();
+		$output["climb"] = array();
 		while($row = mysql_fetch_array($result))
 		{
 			$climb_info = array();
-			$climb_info["climbID"] = $row["climbID"];
+			$climb_info["difficulty"] = $row["difficulty"];
+			$climb_info["tapeColor"] = $row["tapeColor"];
+			$climb_info["pictureURL"] = $row["pictureURL"];
 			$climb_info["name"] = $row["name"];
 			
 			//push single climbs information into final output array
-			array_push($output["climbs"], $climb_info);
+			array_push($output["climb"], $climb_info);
 		}//end while
 		
 		$output["success"] = 1; //success!
-		echo json_encode($output); // echoing JSON response which will be the list of climbs
+		echo json_encode($output); // echoing JSON response which will be info of climb
 		
 }//end if
 
