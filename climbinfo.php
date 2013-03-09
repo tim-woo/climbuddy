@@ -33,30 +33,71 @@ $result = mysql_query("SELECT * FROM Climbs WHERE climbID = '$cid'") or die(mysq
 
 if(mysql_num_rows($result) > 0)
 {
-		//loop through results....
 		$output["climb"] = array();
-		$row = mysql_fetch_array($result)
-		// while($row = mysql_fetch_array($result))
-		// {
-			$climb_info = array();
-			$climb_info["difficulty"] = $row["difficulty"];
-			$climb_info["tapeColor"] = $row["tapeColor"];
-			$climb_info["pictureURL"] = $row["pictureURL"];
-			$climb_info["name"] = $row["name"];
-			
-			//push single climbs information into final output array
-			array_push($output["climb"], $climb_info);
-		// }//end while
+		$row = mysql_fetch_array($result);
+		$climb_info = array();
+		$climb_info["difficulty"] = $row["difficulty"];
+		$climb_info["tapeColor"] = $row["tapeColor"];
+		$climb_info["pictureURL"] = $row["pictureURL"];
+		$climb_info["name"] = $row["name"];	
+		array_push($output["climb"], $climb_info);
 
-		$commentResults = mysql_query("Select * FROM Comments WHERE climbID = '$cid'") or die(mysql_error());
+		$commentResults = mysql_query("SELECT * FROM Comments WHERE climbID = '$cid'") or die(mysql_error());
+		$output["comments"] = array();
 		if(mysql_num_rows($commentResults) > 0) {
 			$comment = array();
 			while ($r = mysql_fetch_array($commentResults)) {
-				$comment["commentID"] = $row["commentID"];
-				$comment["comments"] = $row["comments"];
-				$comment["username"] = $row["username"];
+				$comment["commentID"] = $r["commentID"];
+				$comment["comment"] = $r["comments"];
+				$comment["user"] = $r["username"];
+				array_push($output["comments"], $comment);
 			}
-			array_push($output["climb"], $comment);
+		}
+		
+		$betaVids = mysql_query("SELECT * FROM BetaVideos WHERE climbID = '$cid'") or die(mysql_error());
+		$output["betaVideos"] = array();
+		if(mysql_num_rows($betaVids)>0) {
+			$betaVideo = array();
+			while ($r = mysql_fetch_array($betaVids)) {
+				$betaVideo["betaID"] = $r["betaID"];
+				$betaVideo["videoURL"] = $r["videoURL"];
+				$betaVideo["username"] = $r["username"];
+				$betaVideo["dateAdded"] = $r["dateAdded"];
+				$betaVideo["rating"] = $r["rating"];	// probably should take rating out of this and make it separate from videos
+				array_push($output["betaVideos"], $betaVideo);
+			}
+		}
+		
+		$challengeStrings = mysql_query("SELECT * FROM ChallengeStrings WHERE climbID = '$cid'") or die(mysql_error());
+		$output["challengeStrings"] = array();
+		$output["challengeVideos"] = array();
+		if(mysql_num_rows($challengeStrings)>0) {
+			$cString = array();
+			$challengeVideos = array();
+			while ($r = mysql_fetch_array($challengeStrings)) {
+				$cString["challengeID"] = $r["challengeID"];
+				$cString["challenge"] = $r["challenge"];
+				$cString["username"] = $r["username"];
+				array_push($output["challengeStrings"], $cString);
+			
+				$chaID = $r["challengeID"];
+				$cVidResults = mysql_query("SELECT * FROM ChallengeVideos WHERE challengeID = '$chaID'") or die(mysql_error());
+				$challengeVideos["'$chaID'"] = array();
+				while ($res = mysql_fetch_array($cVidResults)) {
+					$video = array();
+					$video["challengeID"] = $res["challengeID"];
+					$video["videoID"] = $res["videoID"];
+					$video["videoURL"] = $res["videoURL"];
+					$video["username"] = $res["username"];
+
+					$title = $res["challengeID"];
+					array_push($challengeVideos["'$title'"], $video);
+					//array_push($output["challengeVideos"], $video);
+				}
+
+				
+			}
+			array_push($output["challengeVideos"], $challengeVideos);
 		}
 		
 		$output["success"] = 1; //success!
