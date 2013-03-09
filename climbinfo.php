@@ -35,8 +35,9 @@ if(mysql_num_rows($result) > 0)
 {
 		//loop through results....
 		$output["climb"] = array();
-		while($row = mysql_fetch_array($result))
-		{
+		$row = mysql_fetch_array($result)
+		// while($row = mysql_fetch_array($result))
+		// {
 			$climb_info = array();
 			$climb_info["difficulty"] = $row["difficulty"];
 			$climb_info["tapeColor"] = $row["tapeColor"];
@@ -45,7 +46,18 @@ if(mysql_num_rows($result) > 0)
 			
 			//push single climbs information into final output array
 			array_push($output["climb"], $climb_info);
-		}//end while
+		// }//end while
+
+		$commentResults = mysql_query("Select * FROM Comments WHERE climbID = '$cid'") or die(mysql_error());
+		if(mysql_num_rows($commentResults) > 0) {
+			$comment = array();
+			while ($r = mysql_fetch_array($commentResults)) {
+				$comment["commentID"] = $row["commentID"];
+				$comment["comments"] = $row["comments"];
+				$comment["username"] = $row["username"];
+			}
+			array_push($output["climb"], $comment);
+		}
 		
 		$output["success"] = 1; //success!
 		echo json_encode($output); // echoing JSON response which will be info of climb
