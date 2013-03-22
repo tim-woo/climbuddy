@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: application/json');
-
 //upload actual video to server INTO ./videos directory
 $target_path  = "./videos/";
 $target_path = $target_path . basename( $_FILES['uploadedfile']['name']);
@@ -17,26 +15,8 @@ if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
 
 
 //update video tables in DB
-
-
-
-
-////////////////////////////////////////
-///////// DB CONNECTION SETUP /////////
-//////////////////////////////////
-
-
-
-$link = mysql_connect("localhost", "root", "");// access AMAZON server
-
-if(!$link)  die('Was unable to connect to Amazon Server!');
-
-if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
-
-
-////////////////////////////////////////
-/////// SETUP COMPLETE ////////////////
-////////////////////////////////////
+mysql_connect("localhost", "root", "") or die("Error: Unable to connect to database");
+mysql_select_db("climbuddy") or die("Error: Unable to choose correct database");
 
 $username = $_REQUEST['username'];//"anvay"; //hardcoded
 $climbID = $_REQUEST['climbID'];//1;//hardcoded
@@ -46,13 +26,10 @@ echo "'$username'    '$climbID'       '$rating'";
 
 $dateAdded = time();
 
-
-
 $videoURL = basename( $_FILES['uploadedfile']['name']);//$_REQUEST["filename"];//POTENTIAL PROBLEM AREA
 echo "'$videoURL' <br /><br />";
 
 //INSERT QUERY
-
 mysql_query("INSERT INTO BetaVideos (climbID, videoURL, username, dateAdded, rating)
 VALUES ('$climbID', '$videoURL', '$username', NOW(), '$rating')");
 

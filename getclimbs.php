@@ -3,16 +3,8 @@
 //TESTING:  http://54.235.158.91/getclimbs.php?gym_id=1
 header('Content-Type: application/json');
 
-////////////////////////////////////////
-///////// DB CONNECTION SETUP /////////
-//////////////////////////////////
-mysql_connect("localhost", "root", "") or die('Was unable to connect to Amazon Server!');
-mysql_select_db("climbuddy", $link)) or die("Was unable to connect to database!");
-
-
-////////////////////////////////////////
-/////// SETUP COMPLETE ////////////////
-////////////////////////////////////
+mysql_connect("localhost", "root", "") or die("Error: Unable to connect to database");
+mysql_select_db("climbuddy") or die("Error: Unable to choose correct database");
 
 $gid = $_REQUEST["gym_id"];
 

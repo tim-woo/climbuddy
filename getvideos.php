@@ -4,23 +4,8 @@ header('Content-Type: application/json');
 //this script returns the list of videos for a specified climbID
 //SAMPLE TEST: http://54.235.158.91/getvideos.php?climbID=1
 
-
-////////////////////////////////////////
-///////// DB CONNECTION SETUP /////////
-//////////////////////////////////
-
-
-$link = mysql_connect("localhost", "root", "");// access AMAZON server
-
-if(!$link)  die('Was unable to connect to Amazon Server!');
-
-if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
-
-
-////////////////////////////////////////
-/////// SETUP COMPLETE ////////////////
-////////////////////////////////////
-
+mysql_connect("localhost", "root", "") or die("Error: Unable to connect to database");
+mysql_select_db("climbuddy") or die("Error: Unable to choose correct database");
 
 $cid = $_REQUEST["climbID"];
 

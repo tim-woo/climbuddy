@@ -2,10 +2,8 @@
 
 header('Content-Type: application/json');
 
-if (!($db_connection = mysql_connect("localhost","root","")))
-		die('Could not connect: ' . mysql_error());
-if (!($db_selected = mysql_select_db("climbuddy", $db_connection))) 
-		die ('Can\'t use CS143: ' . mysql_error());
+mysql_connect("localhost", "root", "") or die("Error: Unable to connect to database");
+mysql_select_db("climbuddy") or die("Error: Unable to choose correct database");
 
 $param = $_GET["thequery"];
 if($_GET["thequery"]) {

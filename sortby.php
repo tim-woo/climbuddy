@@ -7,24 +7,8 @@ header('Content-Type: application/json');
 //SAMPLE TEST:   http://54.235.158.91/sortby.php?action=difficulty&gymID=1&tapeColor=yellow&difficulty=1
 //SAMPLE TEST2:  http://54.235.158.91/sortby.php?action=tapeColor&gymID=1&tapeColor=yellow&difficulty=1
 
-
-////////////////////////////////////////
-///////// DB CONNECTION SETUP /////////
-//////////////////////////////////
-
-
-$link = mysql_connect("localhost", "root", "");// access AMAZON server
-
-if(!$link)  die('Was unable to connect to Amazon Server!');
-
-if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
-
-
-////////////////////////////////////////
-/////// SETUP COMPLETE ////////////////
-////////////////////////////////////
-
-
+mysql_connect("localhost", "root", "") or die("Error: Unable to connect to database");
+mysql_select_db("climbuddy") or die("Error: Unable to choose correct database");
 
 $action = $_REQUEST['action']; //get action item
 $gymID = $_REQUEST['gymID']; //get the gym that we are looking at
