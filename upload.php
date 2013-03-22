@@ -9,7 +9,7 @@ if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
  echo "The file ".  basename( $_FILES['uploadedfile']['name']).
  " has been uploaded";
 } else{
- echo "There was an error uploading the file, please try again!";
+ echo "false";
 }
 
 //upload of video complete
@@ -37,21 +37,23 @@ else die("Was unable to connect to database!");
 /////// SETUP COMPLETE ////////////////
 ////////////////////////////////////
 
-$username = "anvay"; //hardcoded
-$climbID = 1;//hardcoded
-$rating = 1;//hardcoded
+$username = $_REQUEST['username'];//"anvay"; //hardcoded
+$climbID = $_REQUEST['climbID'];//1;//hardcoded
+$rating = $_REQUEST['rating'];//1;//hardcoded
+
+echo "'$username'    '$climbID'       '$rating'";
 
 $dateAdded = time();
 
 
 
-$videoURL = $_REQUEST["filename"];//POTENTIAL PROBLEM AREA
+$videoURL = basename( $_FILES['uploadedfile']['name']);//$_REQUEST["filename"];//POTENTIAL PROBLEM AREA
 echo "'$videoURL' <br /><br />";
 
 //INSERT QUERY
 
 mysql_query("INSERT INTO BetaVideos (climbID, videoURL, username, dateAdded, rating)
-VALUES ('$climbID', '$videoURL', '$username', '$dateAdded', '$rating')");
+VALUES ('$climbID', '$videoURL', '$username', NOW(), '$rating')");
 
 
 mysql_close($link);

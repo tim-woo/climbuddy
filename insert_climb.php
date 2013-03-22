@@ -30,9 +30,9 @@ $nothing = NULL;
 //INSERT QUERY
 
 if( mysql_query("INSERT INTO Climbs VALUES ('$nothing', '$gymID', '$name', '$difficulty', '$tapeColor', '$pictureURL')") )
-	echo "HERE YOU FUCKING GO KYLE";
+	echo "YES";
 else
-	echo "FUCKKK";
+	echo "NO";
 
 
 mysql_close($link);
