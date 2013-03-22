@@ -2,6 +2,7 @@
 //this script retrieves the requested climb with all of its information
 //specifically from the Climbs table
 //TESTING:  http://54.235.158.91/climbinfo.php?climb_id=1
+header('Content-Type: application/json');
 
 
 
@@ -9,20 +10,14 @@
 ///////// DB CONNECTION SETUP /////////
 //////////////////////////////////
 
-
-header('Content-Type: application/json');
-
 $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
-
 if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
-
 
 ////////////////////////////////////////
 /////// SETUP COMPLETE ////////////////
 ////////////////////////////////////
-
 
 //$gym = $_REQUEST["climb"];
 $cid = $_REQUEST["climb_id"];

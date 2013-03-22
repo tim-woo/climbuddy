@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 //this script's purpose is to take as input an action item by which to sort the climbs by
 //REQUIRES AS INPUT: action = difficulty OR tapeColor .....  gymID = 1,2,etc.. .......  tapeColor = yellow OR red OR etc...difficulty = 1 or 2...
 
@@ -15,8 +17,7 @@ $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
 
-if(mysql_select_db("climbuddy", $link)) echo "Connected to database <br /><br />";
-else die("Was unable to connect to database!");
+if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////

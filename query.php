@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 if (!($db_connection = mysql_connect("localhost","root","")))
 		die('Could not connect: ' . mysql_error());
 if (!($db_selected = mysql_select_db("climbuddy", $db_connection))) 

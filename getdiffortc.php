@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 //this script returns a list of difficulties OR tapeColors for the requested gym
 //SAMPLE TEST:  http://54.235.158.91/getdiffortc.php?action=tapeColor&gymID=1
 //SAMPLE TEST2: http://54.235.158.91/getdiffortc.php?action=difficulty&gymID=1
@@ -13,8 +15,7 @@ $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
 
-if(mysql_select_db("climbuddy", $link)) echo "Connected to database <br /><br />";
-else die("Was unable to connect to database!");
+if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////

@@ -1,30 +1,19 @@
 <?php
 //this script retrieves the climbs from the requested Gym
 //TESTING:  http://54.235.158.91/getclimbs.php?gym_id=1
-
-
+header('Content-Type: application/json');
 
 ////////////////////////////////////////
 ///////// DB CONNECTION SETUP /////////
 //////////////////////////////////
-
-
-header('Content-Type: application/json');
-
-$link = mysql_connect("localhost", "root", "");// access AMAZON server
-
-if(!$link)  die('Was unable to connect to Amazon Server!');
-
-
-if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
+mysql_connect("localhost", "root", "") or die('Was unable to connect to Amazon Server!');
+mysql_select_db("climbuddy", $link)) or die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////
 /////// SETUP COMPLETE ////////////////
 ////////////////////////////////////
 
-
-//$gym = $_REQUEST["gym"];
 $gid = $_REQUEST["gym_id"];
 
 //we want the android to call this script with the specified CLIMB and CLIMB_ID

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 
 //upload actual video to server INTO ./videos directory
 $target_path  = "./videos/";
@@ -25,12 +26,12 @@ if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
 //////////////////////////////////
 
 
+
 $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
 
-if(mysql_select_db("climbuddy", $link)) echo "Connected to database <br /><br />";
-else die("Was unable to connect to database!");
+if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 
 //this script deals with the intent fired on the home screen of the android app
 
@@ -15,9 +16,8 @@
 $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
+if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
 
-if(mysql_select_db("climbuddy", $link)) echo "Connected to database <br /><br />";
-else die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////

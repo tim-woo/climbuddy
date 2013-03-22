@@ -1,5 +1,6 @@
 <?php
 //testing URL:  http://54.235.158.91/insert_climb.php?gymID=1&name=tinytim&difficulty=1&tapeColor=yellow&pictureURL=timsgay
+header('Content-Type: application/json');
 
 
 ////////////////////////////////////////
@@ -11,8 +12,7 @@ $link = mysql_connect("localhost", "root", "");// access AMAZON server
 
 if(!$link)  die('Was unable to connect to Amazon Server!');
 
-if(mysql_select_db("climbuddy", $link)) echo "Connected to database <br /><br />";
-else die("Was unable to connect to database!");
+if(!mysql_select_db("climbuddy", $link)) die("Was unable to connect to database!");
 
 
 ////////////////////////////////////////
